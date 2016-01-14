@@ -1,19 +1,10 @@
 import getopt
 import os
-import re
 import sys
 import urllib2
 from time import sleep
-from datetime import datetime
 
-
-def clean(html):
-    b = re.sub(re.compile('<.*?>'), '', html).strip()
-    return b
-
-
-def log(msg):
-    print "[" + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "]", msg
+from common import *
 
 
 def main(argv):
@@ -61,10 +52,10 @@ def main(argv):
                 f.write(content)
             # Update list
             list_file.write('"' + file_name + '","' + title + '","' + time + '","' + ";".join(topics) + '","' + url + '"\n')
-            # Coool down
+            # Cool down
             sleep(3)
     list_file.close()
-    log("Finished")
+    log("Finished.")
 
 
 def article(url):
