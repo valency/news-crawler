@@ -33,11 +33,13 @@ def main(argv):
         if isfile(filename):
             # log(f)
             with open(filename, 'r') as article_file:
-                article_words[f] = Counter(extract_words(article_file.read()).split())
+                article_words[f] = Counter(extract_words(article_file.read().lower()).split())
     log("Aggregating...")
     word_list = set()
     for item in article_words.values():
-        word_list = word_list.union(item.keys())
+        for entity in item.items():
+            if entity[1] >= 2: word_list.add(entity[0])
+            # word_list = word_list.union(item.keys())
     word_list = list(word_list)
     log("# of Words = " + str(len(word_list)))
     with open(article_dir + ".words.txt", "w") as f:
