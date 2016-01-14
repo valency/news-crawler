@@ -1,2 +1,3 @@
-# news-crawler
-News Crawler
+# News Crawler
+A simple crawler and analytics tool for Breitbart.
+
